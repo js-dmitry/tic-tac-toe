@@ -1,0 +1,17 @@
+[ignore]
+.*/node_modules/*.
+.*/src/index\.js
+.*\.test\.js
+.*\.scss
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+all=true
+module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/stubs/SCSSFlowStub.js.flow'
+
+[strict]
