@@ -1,5 +1,7 @@
 import React from "react";
 import cn from "classnames";
+import cross from "./../img/cross.svg";
+import circle from "./../img/circle.svg";
 
 /**
  * The tile component that acts as a clickable cell in the game field.
@@ -21,7 +23,9 @@ export default function Tile(props: TileProps) {
   const { row, column, onClick, isSelected, canMove, selectedBy } = props;
 
   const selection = isSelected ? (
-    <div className="selected">{selectedBy === "USER" ? "X" : "0"}</div>
+    <div className="selected">
+      <img className="selected-image" src={selectedBy === "USER" ? cross : circle} alt="tile" />
+    </div>
   ) : null;
 
   return (

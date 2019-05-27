@@ -1,9 +1,12 @@
+import Immutable, { Map } from "immutable";
+import { stat } from "fs";
 /**
  * Main game reducer, modifies the game state
  */
 
 // tile type, selected by can be empty
-type TileType = {
+export type TileType = {
+  tileId: number,
   isSelected: boolean,
   selectedBy?: string,
   row?: string,
@@ -11,18 +14,28 @@ type TileType = {
 };
 
 // state type with immutable tiles
-type State = {
-  +tiles: Map<number, TileType>,
+export type State = {
+  +tiles: Immutable.Map<number, TileType>,
   status: string,
   winner?: string,
-  canMove: boolean
+  canMove: boolean,
+  selectedTiles: number,
+  userStarts: boolean,
+  computerWins: number,
+  userWins: number
 };
 
 // action type
-type Action = {
+export type Action = {
   type: string,
   tileId: number,
-  selectedBy: string
+  selectedBy: string,
+  win: WinType
+};
+
+// win type
+export type WinType = {
+  type: string
 };
 
 // initialise the state with empty game state
@@ -39,7 +52,11 @@ export const initialState = {
     [9, { tileId: 9, isSelected: false, row: "bottom", column: "right" }]
   ]),
   status: "IN_PROGRESS",
-  canMove: true
+  canMove: true,
+  selectedTiles: 0,
+  userWins: 0,
+  computerWins: 0,
+  userStarts: true
 };
 
 // reducing
@@ -48,12 +65,30 @@ function ticTacToeReducer(state: State = initialState, action: Action): State {
     case "SELECT_TILE":
       return {
         ...state,
+        selectedTiles: state.selectedTiles + 1,
         canMove: action.selectedBy === "COMPUTER",
         tiles: state.tiles.set(action.tileId, {
           ...state.tiles.get(action.tileId),
           isSelected: true,
           selectedBy: action.selectedBy
         })
+      };
+    case "GAME_OVER":
+      const { win } = action;
+      return {
+        ...state,
+        win,
+        canMove: false,
+        userWins: win.type === "USER" ? state.userWins + 1 : state.userWins,
+        computerWins:
+          win.type === "COMPUTER" ? state.computerWins + 1 : state.computerWins
+      };
+    case "NEW_GAME":
+      return {
+        ...initialState,
+        userWins: state.userWins,
+        computerWins: state.computerWins,
+        userStarts: !state.userStarts
       };
     default:
       return state;
