@@ -37,7 +37,7 @@ export type Action = {
   win: WinType
 };
 
-// initialise the state with empty game state
+// initialise with empty game state
 export const initialState: State = {
   tiles: Map([
     [1, { tileId: 1, isSelected: false, row: "top", column: "left" }],

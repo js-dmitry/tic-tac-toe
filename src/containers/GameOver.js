@@ -1,7 +1,7 @@
 import React from "react";
 import type { WinType } from "./../reducers";
 /**
- * The game over component that tells the user that hte game is over and lets them restart it
+ * The game over component that tells the user that the game is over and lets them restart it
  * @param {*} props - component props
  */
 

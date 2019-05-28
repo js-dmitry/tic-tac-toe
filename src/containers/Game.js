@@ -17,7 +17,7 @@ type GameProps = {
 
 /**
  * The main Game component.
- * This is where gost of the presentation logic will exist
+ * This is where most of the presentation logic will exist
  */
 class Game extends Component<GameProps> {
   render() {
