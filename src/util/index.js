@@ -85,6 +85,13 @@ const getPotentialCombinationTile = (state: State) => {
 };
 
 /**
+ * Check that the computer starts from the state
+ * @param {State} state - state to check in
+ * @returns {boolean} true if computer starts next game
+ */
+export const getComputerStarts = (state: State) => !state.userStarts;
+
+/**
  * Check for win
  * @param {State} state
  */
