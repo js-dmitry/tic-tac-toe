@@ -87,7 +87,8 @@ function ticTacToeReducer(state: State = initialState, action: Action): State {
         ...initialState,
         userWins: state.userWins,
         computerWins: state.computerWins,
-        userStarts: !state.userStarts
+        userStarts: !state.userStarts,
+        canMove: !state.userStarts
       };
     default:
       return state;
