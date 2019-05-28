@@ -45,7 +45,7 @@ class Game extends Component<GameProps> {
         </div>
         <div className="game">
           {gameOverComponent}
-          {tiles.map((tile, key) => {
+          {tiles.map((tile: TileType, key: number) => {
             return (
               <Tile
                 key={key}

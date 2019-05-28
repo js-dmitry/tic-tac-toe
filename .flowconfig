@@ -3,15 +3,18 @@
 .*/src/index\.js
 .*\.test\.js
 .*\.scss
+.*/sagas/*.
 
 [include]
 
 [libs]
+flow-typed
 
 [lints]
 
 [options]
 all=true
 module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/stubs/SCSSFlowStub.js.flow'
+module.name_mapper='immutable' -> '<PROJECT_ROOT>/stubs/immutable.js.flow'
 
 [strict]

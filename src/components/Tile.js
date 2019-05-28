@@ -11,12 +11,12 @@ import circle from "./../img/circle.svg";
 
 type TileProps = {
   tileId: number,
-  row: string,
-  column: string,
+  row?: string,
+  column?: string,
   onClick: Function,
   isSelected: boolean,
   canMove: boolean,
-  selectedBy: string
+  selectedBy?: string
 };
 
 export default function Tile(props: TileProps) {

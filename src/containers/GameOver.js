@@ -15,10 +15,10 @@ export default function GameOver(props: GameOverProps) {
 
   return (
     <div className="game-over">
-      <p>{win ? `${win.type} won!` : "Game Over"}</p>
-      <a href="#" onClick={startNewGame} className="button">
+      <p>{win && win.type !== "DRAW" ? `${win.type} won!` : "Game Over"}</p>
+      <button onClick={startNewGame} className="button">
         New Game
-      </a>
+      </button>
     </div>
   );
 }

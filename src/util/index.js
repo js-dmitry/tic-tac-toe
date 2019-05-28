@@ -69,6 +69,7 @@ const getPotentialCombinationTile = (state: State) => {
         // if tile is not selected by user add it to the list
         potentialCombo.push(tile);
       }
+      return false;
     });
 
     // if there is a combination found
@@ -77,6 +78,7 @@ const getPotentialCombinationTile = (state: State) => {
       potentialTile = potentialCombo.filter(tile => !tile.isSelected)[0];
       return true; // return true here to stop the loop
     }
+    return false;
   });
 
   return potentialTile;
@@ -111,6 +113,7 @@ export const getWin = (state: State) => {
           computerTiles.push(tile);
         }
       }
+      return false;
     });
 
     // if any of the arrays have 3 elements, player wins
@@ -123,6 +126,7 @@ export const getWin = (state: State) => {
       win = { type: "COMPUTER" };
       return true;
     }
+    return false;
   });
 
   return win;

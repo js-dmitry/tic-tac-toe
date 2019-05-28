@@ -1,5 +1,4 @@
 import Immutable, { Map } from "immutable";
-import { stat } from "fs";
 /**
  * Main game reducer, modifies the game state
  */
@@ -25,6 +24,11 @@ export type State = {
   userWins: number
 };
 
+// win type
+export type WinType = {
+  type: string
+};
+
 // action type
 export type Action = {
   type: string,
@@ -33,14 +37,9 @@ export type Action = {
   win: WinType
 };
 
-// win type
-export type WinType = {
-  type: string
-};
-
 // initialise the state with empty game state
-export const initialState = {
-  tiles: new Map([
+export const initialState: State = {
+  tiles: Map([
     [1, { tileId: 1, isSelected: false, row: "top", column: "left" }],
     [2, { tileId: 2, isSelected: false, row: "top", column: "center" }],
     [3, { tileId: 3, isSelected: false, row: "top", column: "right" }],

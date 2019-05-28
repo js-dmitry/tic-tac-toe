@@ -1,5 +1,6 @@
 import { put, takeLatest, select } from "redux-saga/effects";
 import { getTile, getRandomInt, getWin } from "./../util";
+import type { TileType } from "./../reducers";
 
 /**
  * A delay function
@@ -11,7 +12,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
  * Tile select saga it will select the free cell if user done their move
  * @param {Object} action
  */
-function* selectTileSaga(action) {
+function* selectTileSaga(action): Iterable<*> {
   yield delay(100);
   // check for win after each move
   const win = yield select(getWin);
@@ -21,11 +22,10 @@ function* selectTileSaga(action) {
   if (win || gameOver) {
     yield put({
       type: "GAME_OVER",
-      win,
-      gameOver
+      win: win || { type: "DRAW" }
     });
   } else if (action.selectedBy === "USER") {
-    const tile = yield select(getTile);
+    const tile: TileType = yield select(getTile);
     yield delay(getRandomInt(500, 1500)); // delay for .5 to 1.5 seconds
     yield put({
       type: "SELECT_TILE",
@@ -39,7 +39,7 @@ function* selectTileSaga(action) {
  * Starts the game if the new game is started and it's computer's turn to start
  * @param {Object} action
  */
-function* newGameSaga(action) {
+function* newGameSaga(action): Iterable<*>  {
   // see if it's computer's turn to start
   const makeMove = yield select(state => !state.userStarts);
 
