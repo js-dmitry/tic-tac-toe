@@ -43,4 +43,4 @@ To run the flow typechecker
 
 ## Images
 
-
+![Alt text](images/tic-tac-toe.png "TIC-TAC-TOE")

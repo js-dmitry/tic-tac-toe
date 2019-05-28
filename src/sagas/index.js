@@ -1,6 +1,5 @@
 import { put, takeLatest, select } from "redux-saga/effects";
 import { getTile, getRandomInt, getWin, getComputerStarts } from "./../util";
-import type { TileType } from "./../reducers";
 
 /**
  * A delay function
@@ -25,7 +24,7 @@ export function* selectTileSaga(action): Iterable<*> {
       win: win || { type: "DRAW" }
     });
   } else if (action.selectedBy === "USER") {
-    const tile: TileType = yield select(getTile);
+    const tile = yield select(getTile);
     yield delay(getRandomInt(500, 1500)); // delay for .5 to 1.5 seconds
     yield put({
       type: "SELECT_TILE",

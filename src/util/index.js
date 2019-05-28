@@ -33,6 +33,7 @@ export const getRandomInt = (min: number, max: number) => {
 /**
  * Gets a random unselected tile
  * @param {State} state
+ * @returns {Object} random tile object
  */
 export const getTile = (state: State) => {
   // try to get potential combination
@@ -56,9 +57,9 @@ export const getTile = (state: State) => {
 /**
  * Tries to figure out the winning combination that is not taken by the user and returns the tile from it
  * @param {State} state
- * @returns {Tile} tile object
+ * @returns {Object} tile object for the optential combination
  */
-const getPotentialCombinationTile = (state: State) => {
+export const getPotentialCombinationTile = (state: State) => {
   let potentialTile;
   // get the combination that is not taken by the user
   winningCombinations.find(combo => {
@@ -94,6 +95,7 @@ export const getComputerStarts = (state: State) => !state.userStarts;
 /**
  * Check for win
  * @param {State} state
+ * @returns {Object} the win object
  */
 export const getWin = (state: State) => {
   // no need to check if there are less than 3 selected

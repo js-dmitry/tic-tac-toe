@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { expect } from "chai";
-import sinon from "sinon";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
 
